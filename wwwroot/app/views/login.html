@@ -1,0 +1,38 @@
+﻿<md-content role="main" layout-align="none center" layout="column" flex="100">
+    <div flex></div>
+    <md-card layout-padding style="max-width:268px" flex="none">
+        <div layout="column" layout-align="center center">
+            <img src="wwwroot/images/logo.png" />
+            <!--<img src="/images/e-liveConnections.png" style="width:230px;margin-top:5px" />-->
+        </div>
+        <div layout="row">
+        </div>
+        <div>
+            <form ng-submit="login()" name="loginForm">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Usuario</label>
+                    <md-icon>account_circle</md-icon>
+                    <input ng-model="user.UserName" type="text" ng-required="true" autofocus>
+                </md-input-container>
+                <md-input-container md-no-float class="md-icon-float md-block">
+                    <label>Contraseña</label>
+                    <md-icon>lock</md-icon>
+                    <input ng-model="user.Password" type="password" ng-required="true">
+                </md-input-container>
+                <span layout="row" md-colors="{color: 'warn-900'}" ng-if="message" layout-align="center center">{{message}}</span>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary" type="submit">Iniciar sesion</md-button>
+                </div>
+            </form>
+        </div>
+    </md-card>
+    <div flex></div>
+    <div layout="row" flex="noshrink" layout-align="center center" style="width:100%;height:50px">
+        <div id="license-footer">
+            <span>{{appInfo.companyName}} </span>
+            <span>&copy;{{appInfo.devYear}}</span>
+            <span ng-if="appInfo.thisYear != appInfo.devYear">&#8211;{{appInfo.thisYear}}</span>
+            <span> / {{appInfo.appName}} Ver. {{appInfo.appVersion}} {{appInfo.appEnvironment}}</span>
+        </div>
+    </div>
+</md-content>

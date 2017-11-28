@@ -1,0 +1,93 @@
+
+<!--<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+            md-component-id="left" hide-print
+            md-is-locked-open="$mdMedia('gt-sm')">
+
+    <header class="nav-header md-primary"  md-colors="{backgroundColor: 'grey-50'}">
+        <a ng-href="/" class="docs-logo">
+            <img src="/images/logo.png" />
+        </a>
+        <img src="/images/e-liveConnections.png" style="width:100%;margin-top:5px"/>
+    </header>
+
+    <md-content flex role="navigation" md-colors="{backgroundColor: 'primary-800'}">
+        <ul class="docs-menu">
+            <li ng-repeat="section in menu.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
+                <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}">
+                    {{section.name}}
+                </h2>
+                <menu-link section="section" ng-if="section.type === 'link' && !section.hidden"></menu-link>
+
+                <menu-toggle section="section" ng-if="section.type === 'toggle' && !section.hidden"></menu-toggle>
+
+                <ul ng-if="section.children" class="menu-nested-list">
+                    <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
+                        <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+
+                        <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </md-content>
+</md-sidenav>-->
+
+<div layout="column" role="main" flex >
+    <div style="background-color:white">
+        <md-toolbar class="md-whiteframe-glow-z1" md-colors="{background: 'default-primary-50-0'}" style="height: 68px;" flex>
+            <div class="md-toolbar-tools" tabIndex="-1" flex>
+                <a ng-href="/ART/#/" class="docs-logo">
+                    <img src="./wwwroot/images/logo.png" style="margin-top: 9px; height: 75px;"/>
+                </a>
+                <span flex></span>
+                <md-button class="md-primary" aria-label="Servicio Comunitario" ui-sref=".servicioComunitario" 
+                           ui-sref-opts="{reload: true, notify: true}" ng-if="access('ServicioComunitario')">
+                    <md-icon>assignment</md-icon>
+                    Servicio Comunitario
+                </md-button>
+                <md-button class="md-primary" aria-label="Pasantias" ui-sref=".pasantias" 
+                           ui-sref-opts="{reload: true, notify: true}" ng-if="access('Pasantias')">
+                    <md-icon>assignment</md-icon>
+                    Pasantias
+                </md-button>
+                <md-button class="md-primary" aria-label="Tesis y Casos clinicos" ui-sref=".tesis" 
+                           ui-sref-opts="{reload: true, notify: true}" ng-if="access('Tesis')">
+                    <md-icon>assignment</md-icon>
+                    Tesis y Casos clinicos
+                </md-button>
+                <md-menu ng-if="access('Administration')">
+                    <md-button aria-label="Administration" class="md-icon-button md-primary" ng-click="$mdMenu.open($event)">
+                        <md-icon>settings</md-icon>
+                        <md-tooltip md-autohide>Administracion</md-tooltip>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="section in menuAdministration" ng-if="section.access">
+                            <md-button ui-sref="{{section.sref}}" ui-sref-opts="{reload: true, notify: true}" class="md-accent">
+                                <md-icon>{{section.icon || 'settings'}}</md-icon>
+                                {{section.name}}
+                            </md-button>
+                        </md-menu-item>
+                        <!--<md-menu-divider></md-menu-divider>-->
+                    </md-menu-content>
+                </md-menu>
+                <div ng-if="authData.isAuthenticated" style="font-size: 15px;" md-colors="{color: 'default-primary'}">{{authData.name}}</div>
+                <md-button class="md-icon-button md-primary" aria-label="Salir" ng-if="authData.isAuthenticated" ng-click="logout()">
+                    <md-tooltip md-autohide>Desconectarse</md-tooltip>
+                    <md-icon>exit_to_app</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+    </div>
+    <md-content md-scroll-y layout="column" flex>
+        <div ui-view></div>
+        <div flex></div>
+        <div layout="row" flex="none" layout-align="center center" style="width:100%">
+            <div id="license-footer" flex>
+                <span>{{appInfo.companyName}} </span>
+                <span>&copy;{{appInfo.devYear}}</span>
+                <span ng-if="appInfo.thisYear != appInfo.devYear">&#8211;{{appInfo.thisYear}}</span>
+                <span> / {{appInfo.appName}} Ver. {{appInfo.appVersion}} {{appInfo.appEnvironment}}</span>
+            </div>
+        </div>
+    </md-content>
+</div>

@@ -1,0 +1,48 @@
+﻿<div layout-padding layout="column" layout-align="start center">
+    <div>
+        <div layout="row" layout-align="start center">
+            <md-icon layout-margin>verified_user</md-icon>
+            <strong flex>Manage user profiles</strong>
+        </div>
+        <md-crud options="crudOptions"></md-crud>
+    </div>
+</div>
+<script type="text/ng-template" id="templateClaimTypeTree">
+    <div ng-click="claimType.AccessLevelTypes.length == 0 && options.filterClaim(claimType)" 
+         layout-padding layout="row" layout-align="start center" style="cursor:pointer"
+         class="md-selectable" md-ink-ripple="true" ng-class="{ 'md-selected': options.claimTypeSelected == claimType }">
+        <md-icon style="font-size: 20px;padding-right: 0px;padding-top: 1px;" flex="none">{{claimType.AccessLevelTypes.length > 0 ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}}</md-icon>
+        <span flex>{{ claimType.Description }}</span>
+        <span ng-if="claimType.AccessLevelTypes.length == 0">({{ options.countClaims(claimType, item) }})</span>
+    </div>
+    <div ng-repeat="claimType in claimType.AccessLevelTypes" ng-include="'templateClaimTypeTree'" style="margin-left:10px"></div>
+</script>
+
+<script type="text/ng-template" id="templateRoleClaim.html">
+    <md-card layout="row">
+        <div flex="40" style="background-color: rgba(205, 205, 205, 0.35);font-size: 13px;">
+            <div ng-repeat="claimType in options.claimTypes" ng-include="'templateClaimTypeTree'"></div>
+        </div>
+        <div flex>
+            <div layout="row" style="background-color: rgba(205, 205, 205, 0.15);padding:10px" layout-align="center center">
+                <span>{{ options.claimTypeSelected.Description }}</span>
+                <div flex></div>
+                <div layout="row">
+                    <md-button class="md-icon-button md-primary" ng-disabled="true">
+                        <md-icon>&#xE8B6;</md-icon>
+                    </md-button>
+                    <md-autocomplete md-search-text="options.searchText" type="search" placeholder="" md-items="item in []"></md-autocomplete>
+                </div>
+            </div>
+            <md-virtual-repeat-container id="vertical-container" ng-if="options.claimTypeSelected" style="height:400px">
+                <div md-virtual-repeat="claim in options.claims | filter:options.claimFilter | filter:options.searchText" class="repeated-item" layout="row">
+                    <md-checkbox ng-checked="options.isCheckedClaim(claim, item) != -1 || (options.claimTypeSelected.countSelected == 'All' && (claim.Value != 'All' || claim.Value != '0'))"
+                                 ng-disabled="isLoading || (options.claimTypeSelected.countSelected == 'All' && claim.Value != 'All' && claim.Value != '0')"
+                                 ng-click="options.toggleClaim(claim, item)" aria-label="claim.Description" style="margin:10px">
+                        {{ claim.Description }}
+                    </md-checkbox> 
+                </div>
+            </md-virtual-repeat-container>
+        </div>
+    </md-card>
+</script>

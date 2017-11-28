@@ -1,0 +1,33 @@
+<div layout="column" layout-align="center center">
+    <md-card flex=100 layout="row">
+        <div style="padding: 10px 10px 10px 10px;">
+            <md-icon>assignment</md-icon>
+            <strong layout-align="center center">
+                Trabajo especiales de grado                
+            </strong>
+        </div>        
+    </md-card>        
+    <md-crud options="crudOptions"></md-crud>
+</div>
+<script type="text/ng-template" id="templateDocs.html">
+    <!-- Aqui ira el html para cargar los documentos -->
+    <md-content>       
+        <md-toolbar class="md-primary">
+            <div class="md-toolbar-tools">
+                <span>Documentos del expediente</span>
+            </div>
+        </md-toolbar>        
+        <md-list>
+            <md-list-item class="md-2-line"  ng-repeat="file in item.Archivos">
+                <md-icon>insert_drive_file</md-icon>
+                <a class="md-list-item-text" href="/ART/api/download/{{file.File_Md5}}">{{file.File_Name}}</a>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</script>
+
+<script type="text/ng-template" id = "templateButton.html">				
+    <md-button class="md-raised md-primary" ngf-select="options.onUpload($files, item)" multiple>
+        <md-icon>file_upload</md-icon>Subir Archivos
+    </md-button>
+</script>

@@ -1,0 +1,33 @@
+{
+  "name": "sdtrackingtool",
+  "version": "0.1.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-uglify": "^2.0.1"
+  },
+  "dependencies": {
+    "angular": "~1.5.*",
+    "angular-animate": "~1.5.*",
+    "angular-aria": "~1.5.*",
+    "angular-cookies": "~1.5.8",
+    "angular-css": "^1.0.8",
+    "angular-deferred-bootstrap": "^0.1.9",
+    "angular-loading-bar": "~0.9.0",
+    "angular-local-storage": "^0.5.2",
+    "angular-material": "^1.1.4",
+    "angular-material-data-table": "^0.10.10",
+    "angular-messages": "~1.5.*",
+    "angular-route": "~1.5.*",
+    "angular-sanitize": "~1.5.*",
+    "angular-ui-router": "^0.4.2",
+    "lf-ng-md-file-input": "^1.4.8",
+    "md-crud": "0.1.15",
+    "moment": "^2.17.1",
+    "ng-file-upload": "^12.2.13",
+    "ng-scroll-bar": "0.2.3"
+  }
+}
