@@ -1,5 +1,5 @@
 # ART
-Administer of Report of Thesis.
+Administrador de Trabajos especiales de grado y pasantias
 
 ## Antes de iniciar el proyecto
 
