@@ -1,5 +1,5 @@
 {
-  "name": "sdtrackingtool",
+  "name": "artsystem",
   "version": "0.1.0",
   "devDependencies": {
     "gulp": "^3.9.1",
