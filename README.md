@@ -36,6 +36,8 @@ Este comando instalara el cliente de gulp globalmente para ser usado en este pro
 ### Instalar la base de datos
 > Instalar la base de datos en PHPMYADMIN MYSQL o en tu gestor de base de datos de preferencia
 
+> Base de datos modelo : http://pasted.co/97531507
+
 ### Correr Gulp para concatenar y minificar 
 > $ gulp
 
